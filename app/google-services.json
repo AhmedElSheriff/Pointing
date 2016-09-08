@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "2670557516",
+    "firebase_url": "https://pointings-2264c.firebaseio.com",
+    "project_id": "pointings-2264c",
+    "storage_bucket": "pointings-2264c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2670557516:android:83f8cc7f2dcd8182",
+        "android_client_info": {
+          "package_name": "com.example.android.pointing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "2670557516-a5dtgcjh0f24hif8js7aqg75snb5p5b7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnix1Sxe00y92B958OVsk70F-bxbvgHO0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
