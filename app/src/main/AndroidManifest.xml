@@ -7,15 +7,12 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -26,15 +23,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".SignupActivity"
             android:label="@string/title_activity_signup"
-            android:theme="@style/AppTheme"
             android:parentActivityName=".MainActivity"
-            >
+            android:theme="@style/AppTheme"/>
 
-
-        </activity>
+        <activity
+            android:name=".SetFirstLoginName"
+            android:label="@string/title_activity_set_first_login_name"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

@@ -67,7 +67,6 @@
                 android:padding="15dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:layout_marginTop="30dp"
                 android:gravity="start"
                 android:inputType="text"
                 android:hint="Email"
@@ -75,6 +74,7 @@
                 android:textAlignment="textStart"
                 android:textColorHint="#9f9f9f"
                 android:id="@+id/inemail"
+
 
                 />
 
@@ -86,7 +86,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:gravity="start"
-                android:inputType="text"
+                android:inputType="textPassword"
                 android:hint="Password"
                 android:textSize="13sp"
                 android:textAlignment="textStart"
@@ -118,8 +118,11 @@
                 android:layout_alignParentBottom="true"
                 android:id="@+id/needaccount"
                 android:gravity="center"
-                android:paddingTop="10dp"
+                android:paddingTop="5dp"
                 />
+
+
+
         </RelativeLayout>
 
 

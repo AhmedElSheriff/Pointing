@@ -7,7 +7,24 @@ import com.firebase.client.Firebase;
  */
 public class User {
 
-    String email,password, id;
+    String email,password, id, username, studyGroupName;
+    String isSgl;
+
+    public void setIsSgl(String isSgl) {
+        this.isSgl = isSgl;
+    }
+
+    public String isSgl() {
+        return isSgl;
+    }
+
+    public void setStudyGroupName(String studyGroupName) {
+        this.studyGroupName = studyGroupName;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public void setId(String id) {
         this.id = id;
@@ -33,6 +50,14 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getStudyGroupName() {
+        return studyGroupName;
     }
 
     public void saveUser()
