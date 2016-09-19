@@ -3,7 +3,6 @@ package com.example.android.pointing;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,41 +11,29 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.client.Firebase;
+import com.example.android.pointing.controller.ControllerSGL;
+import com.example.android.pointing.controller.ControllerStudent;
+import com.example.android.pointing.login.SignupActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 
-/**
- * A placeholder fragment containing a simple view.
- */
 public class MainActivityFragment extends Fragment {
 
     public MainActivityFragment() {
     }
 
+
     private EditText mEmail;
     private EditText mPassword;
-    private EditText mUsername;
     private TextView mNeedAccount;
     private Button mSignin;
-    private Firebase mFirebase;
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
-
     private String mEmailStr;
     private String mPasswordStr;
-    private String mUsernameStr;
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,71 +44,134 @@ public class MainActivityFragment extends Fragment {
         mPassword = (EditText) rootView.findViewById(R.id.inpassword);
         mSignin = (Button) rootView.findViewById(R.id.signin);
         mAuth = FirebaseAuth.getInstance();
-        Intent intent = getActivity().getIntent();
-        mUsernameStr = intent.getStringExtra("username");
-
         mNeedAccount = (TextView) rootView.findViewById(R.id.needaccount);
         mNeedAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(),SignupActivity.class));
+                startActivity(new Intent(getActivity(), SignupActivity.class));
             }
         });
-
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if(user != null)
-                {
-                    Log.d("Firebase", "onAuthStateChanged:signed_in:" + user.getUid());
-
-                    startActivity(new Intent(getActivity(),SetFirstLoginName.class));
-
-                    UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
-                            .setDisplayName(mUsernameStr)
-                            .build();
-                    user.updateProfile(userProfileChangeRequest);
-                }
-                else
-                {
-                    Log.d("Firebase", "onAuthStateChanged:signed_out");
-                }
-            }
-        };
 
 
         mSignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                mEmailStr = SignupActivityFragment.removeSpaces(mEmail.getText().toString());
-                mPasswordStr = mPassword.getText().toString();
-
+                mEmailStr = mEmail.getText().toString().trim();
+                mPasswordStr = mPassword.getText().toString().trim();
                 mAuth.signInWithEmailAndPassword(mEmailStr, mPasswordStr).addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(Task<AuthResult> task) {
                         if (task.isSuccessful()){
-
-                            FirebaseUser user = task.getResult().getUser();
-
-//                            UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
-//                                    .setDisplayName(mUsernameStr)
-//                                    .build();
-//                            user.updateProfile(userProfileChangeRequest);
-
-                            Toast.makeText(getActivity(), "تم تسجيلك بنجاح ^_^ ", Toast.LENGTH_SHORT).show();
-
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            String mUser = user.getDisplayName();
+                            if(mUser!=null){
+                                getActivity().finish();
+                                startActivity(new Intent(getActivity(), ControllerSGL.class));
+                            }
+                            else{
+                                getActivity().finish();
+                                startActivity(new Intent(getActivity(), ControllerStudent.class));
+                            }
                         }else {
-                            Toast.makeText(getActivity(), "فشل التسجيل", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Not Success", Toast.LENGTH_SHORT).show();
                         }
-
                     }
                 });
             }
         });
 
-
         return rootView;
     }
+
+
 }
+/*
+//   getExistingUserInfo();
+                          */
+/*  if(User!=null) {
+                           *//*
+*/
+/*  //   Toast.makeText(getActivity(), "2aaaaaaablny !!!!!!", Toast.LENGTH_SHORT).show();
+                                Log.v("HimaAbousalem",userKey);*//*
+*/
+/*
+                                sglstr = User.get("sgl");
+                                if (sglstr.equals("true")) {
+                                    Intent intent = new Intent(getActivity(), ControllerSGL.class);
+                                    intent.putExtra("user", User);
+                                    startActivity(intent);
+                                } else if (sglstr.equals("false")) {
+                                    Intent intent = new Intent(getActivity(), ControllerStudent.class);
+                                    intent.putExtra("user", User);
+                                    startActivity(intent);
+                                }
+                               Intent intent = new Intent(getActivity(), ControllerManager.class);
+                                intent.putExtra("userKey", userKey);
+                                startActivity(intent);
+                            }
+                            else {
+                                Toast.makeText(getActivity(), "NULL!!!!!!", Toast.LENGTH_SHORT).show();
+                            }*//*
+
+Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getActivity(), ControllerManager.class);
+        intent.putExtra("userKey", userKey);
+        startActivity(intent);*/
+
+/*
+    */
+/*    public void getExistingUserInfo(String uid){
+
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            database.getReference("allUsers").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    //get user data from dataSnapshot
+               //    Toast.makeText(getContext(),"Userkey: " + userKey,Toast.LENGTH_LONG).show();
+                 //   Log.v("himaAbousalem",userKey);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+        }*//*
+
+    public void getExistingUserInfo(){
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        database.getReference().child("allUsers").orderByChild("emailAddress")
+                .equalTo(mEmailStr)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                            uid = childSnapshot.getKey();
+                            Log.v("HimaAbosalem",uid);
+
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+   */
+/*     database.getReference("allUsers").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //get user data from dataSnapshot
+                User=(HashMap<String,String>)dataSnapshot.getValue();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+*//*
+
+
+    }*/

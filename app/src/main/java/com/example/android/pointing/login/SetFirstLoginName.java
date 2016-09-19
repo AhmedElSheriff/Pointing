@@ -1,4 +1,4 @@
-package com.example.android.pointing;
+package com.example.android.pointing.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.android.pointing.MainActivity;
+import com.example.android.pointing.R;
+
 public class SetFirstLoginName extends AppCompatActivity {
+
 
     private EditText mUsername;
     private Button mOkButton;
@@ -38,5 +42,4 @@ public class SetFirstLoginName extends AppCompatActivity {
 
 
     }
-
 }
