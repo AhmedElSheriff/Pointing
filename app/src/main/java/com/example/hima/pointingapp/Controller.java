@@ -1,4 +1,4 @@
-package com.example.android.pointing.controller;
+package com.example.hima.pointingapp;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,29 +9,18 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 
-import com.example.android.pointing.MainActivity;
-import com.example.android.pointing.R;
-import com.example.android.pointing.ui.student.AddActivity;
-import com.example.android.pointing.ui.student.LeaderboardActivity;
-import com.example.android.pointing.ui.student.MyActivity;
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.hima.pointingapp.ui.student.AddActivity;
+import com.example.hima.pointingapp.ui.student.LeaderboardActivity;
+import com.example.hima.pointingapp.ui.student.MyActivity;
 
-public class ControllerStudent extends AppCompatActivity {
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-
-        return super.onOptionsItemSelected(item);
-    }
+public class Controller extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_controller_student);
+        setContentView(R.layout.activity_controller);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -45,9 +34,7 @@ public class ControllerStudent extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    FirebaseAuth.getInstance().signOut();
-                    finish();
-                    startActivity(new Intent(ControllerStudent.this,MainActivity.class));
+                    startActivity(new Intent(Controller.this,MainActivity.class));
                 }
             });
         }
@@ -90,7 +77,7 @@ class MyAdapter extends FragmentStatePagerAdapter{
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "Add NewActivity";
+                return "Add Activity";
             case 1:
                  return "My Activities";
             case 2:

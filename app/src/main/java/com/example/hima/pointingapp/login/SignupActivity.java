@@ -1,9 +1,9 @@
-package com.example.android.pointing.login;
+package com.example.hima.pointingapp.login;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.android.pointing.R;
+import com.example.hima.pointingapp.R;
 
 public class SignupActivity extends AppCompatActivity {
 

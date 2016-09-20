@@ -1,4 +1,4 @@
-package com.example.android.pointingapp;
+package com.example.hima.pointingapp;
 
 import org.junit.Test;
 

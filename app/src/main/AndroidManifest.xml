@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.pointing" >
+    package="com.example.hima.pointingapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -12,11 +12,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,11 +28,9 @@
             android:label="@string/title_activity_signup"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Controller" />
+        <activity android:name=".controller.ControllerStudent" />
         <activity android:name=".login.SetFirstLoginName" />
-        <activity android:name=".controller.ControllerSGL" >
-        </activity>
-        <activity android:name=".controller.ControllerStudent"/>
+        <activity android:name=".controller.ControllerSGL"></activity>
     </application>
 
 </manifest>

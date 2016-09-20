@@ -1,43 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:padding="10dp"
     android:layout_height="match_parent">
 
-    <EditText
-
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:id="@+id/activityname"
-        android:hint="Add Activity's name"
-        android:textSize="14sp"
-        android:textColorHint="#9f9f9f"
-        android:singleLine="true"
-        />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/activityname"
-        android:hint="Points"
-        android:textSize="14sp"
-        android:textColorHint="#9f9f9f"
-        android:id="@+id/addpoints"
-        android:singleLine="true"
-        />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/addpoints"
-        android:background="@drawable/buttonstyle"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:text="ADD"
-        android:id="@+id/addnewactivitybtn"
-        android:textColor="#FFFFFF"
-        />
-
-</RelativeLayout>
+</FrameLayout>

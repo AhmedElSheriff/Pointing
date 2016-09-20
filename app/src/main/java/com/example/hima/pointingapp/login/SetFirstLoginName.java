@@ -1,4 +1,4 @@
-package com.example.android.pointing.login;
+package com.example.hima.pointingapp.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.android.pointing.MainActivity;
-import com.example.android.pointing.R;
+import com.example.hima.pointingapp.MainActivity;
+import com.example.hima.pointingapp.R;
 
 public class SetFirstLoginName extends AppCompatActivity {
 
