@@ -1,4 +1,4 @@
-package com.example.hima.pointingapp.login;
+package com.example.android.pointing.login;
 
 /**
  * Created by Abshafi on 9/8/2016.

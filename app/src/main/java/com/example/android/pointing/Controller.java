@@ -1,4 +1,4 @@
-package com.example.hima.pointingapp.controller;
+package com.example.android.pointing;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,19 +11,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.example.hima.pointingapp.MainActivity;
-import com.example.hima.pointingapp.R;
-import com.example.hima.pointingapp.ui.sgl.AddNewActivity;
-import com.example.hima.pointingapp.ui.sgl.PendingActivity;
-import com.example.hima.pointingapp.ui.student.LeaderboardActivity;
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.android.pointing.ui.student.AddActivity;
+import com.example.android.pointing.ui.student.LeaderboardActivity;
+import com.example.android.pointing.ui.student.MyActivity;
 
-public class ControllerSGL extends AppCompatActivity {
+public class Controller extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_controller_sgl);
+        setContentView(R.layout.activity_controller);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -37,34 +34,32 @@ public class ControllerSGL extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    FirebaseAuth.getInstance().signOut();
-                    finish();
-                    startActivity(new Intent(ControllerSGL.this,MainActivity.class));
+                    startActivity(new Intent(Controller.this, MainActivity.class));
                 }
             });
         }
 
 
-        viewPager.setAdapter(new MyAdapter2(getSupportFragmentManager()));
+        viewPager.setAdapter(new MyAdapter(getSupportFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
-    }
+        }
 }
-class MyAdapter2 extends FragmentStatePagerAdapter {
+class MyAdapter extends FragmentStatePagerAdapter{
 
 
-    public MyAdapter2(FragmentManager fm) {
+    public MyAdapter(FragmentManager fm) {
         super(fm);
     }
 
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment=null;
+       Fragment fragment=null;
         switch (position){
             case 0:
-                fragment = new AddNewActivity();
+                fragment = new AddActivity();
                 break;
             case 1:
-                fragment = new PendingActivity();
+                fragment = new MyActivity();
                 break;
             case 2:
                 fragment = new LeaderboardActivity();
@@ -82,9 +77,9 @@ class MyAdapter2 extends FragmentStatePagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "Add New Activity";
+                return "Add NewActivity";
             case 1:
-                return "Pending Activities";
+                 return "My Activities";
             case 2:
             default:
                 return "Leaderboard";

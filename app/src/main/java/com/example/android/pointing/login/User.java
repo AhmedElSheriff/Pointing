@@ -1,4 +1,4 @@
-package com.example.hima.pointingapp.login;
+package com.example.android.pointing.login;
 
 import com.google.firebase.database.Exclude;
 
@@ -17,7 +17,17 @@ public class User {
     public String studyGroupName;
     public String sgl;
 
+    public String userPoints;
+
     public User(){}
+
+    public void setUserPoints(String userPoints) {
+        this.userPoints = userPoints;
+    }
+
+    public String getUserPoints() {
+        return userPoints;
+    }
 
     public String getEmailAddress() {
         return emailAddress;
@@ -83,6 +93,9 @@ public class User {
         result.put("username", this.username);
         result.put("studyGroupName", this.studyGroupName);
         result.put("sgl", this.sgl);
+        result.put("userPoints", this.userPoints);
+
+
         return result;
     }
 }

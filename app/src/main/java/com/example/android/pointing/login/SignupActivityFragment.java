@@ -1,4 +1,4 @@
-package com.example.hima.pointingapp.login;
+package com.example.android.pointing.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,9 +17,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.hima.pointingapp.R;
-import com.example.hima.pointingapp.controller.ControllerSGL;
-import com.example.hima.pointingapp.controller.ControllerStudent;
+import com.example.android.pointing.R;
+import com.example.android.pointing.controller.ControllerSGL;
+import com.example.android.pointing.controller.ControllerStudent;
 import com.firebase.client.Firebase;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -32,6 +32,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 import java.util.Map;
+
+//import com.example.android.pointing.ControllerSGL;
+//import com.example.hima.pointingapp.controller.ControllerStudent;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -55,7 +58,7 @@ public class SignupActivityFragment extends Fragment implements View.OnClickList
     private ArrayAdapter<String> mArrayAdapter;
     private String[] mStudyGroupNamesArray;
     private CheckBox mSglCheckBox;
-    User mUser;
+    private User mUser;
 
     private final String FIREBASE_URL="https://pointingapp-dda9e.firebaseio.com/";
     private String mEmailStr;
@@ -161,6 +164,7 @@ public class SignupActivityFragment extends Fragment implements View.OnClickList
 
             newUserUpdate.put(userType, user.serialize());
             newUserUpdate.put(allusers, user.serialize());
+
             database.updateChildren(newUserUpdate);
         }
     }
@@ -192,6 +196,7 @@ public class SignupActivityFragment extends Fragment implements View.OnClickList
         mUser.setSgl(SGL);
         mUser.setStudyGroupName(mStudyGroupName);
         mUser.setUsername(mUsernameStr);
+        mUser.setUserPoints("0");
 
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(mUser.getEmailAddress(), mUser.getPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override

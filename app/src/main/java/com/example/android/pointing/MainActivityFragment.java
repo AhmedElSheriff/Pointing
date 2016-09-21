@@ -1,4 +1,4 @@
-package com.example.hima.pointingapp;
+package com.example.android.pointing;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.hima.pointingapp.controller.ControllerSGL;
-import com.example.hima.pointingapp.controller.ControllerStudent;
-import com.example.hima.pointingapp.login.SignupActivity;
+import com.example.android.pointing.controller.ControllerSGL;
+import com.example.android.pointing.controller.ControllerStudent;
+import com.example.android.pointing.login.SignupActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -48,7 +48,7 @@ public class MainActivityFragment extends Fragment {
         mNeedAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(),SignupActivity.class));
+                startActivity(new Intent(getActivity(), SignupActivity.class));
             }
         });
 
