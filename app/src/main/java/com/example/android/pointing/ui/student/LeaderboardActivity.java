@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.android.pointing.R;
+import com.example.android.pointing.login.User;
 import com.firebase.client.Firebase;
 import com.firebase.ui.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,6 +41,7 @@ public class LeaderboardActivity extends Fragment {
     private String studyGroupName;
     private String points;
     ListView leaderBoardList;
+    public Firebase ref;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,9 +49,12 @@ public class LeaderboardActivity extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_leaderboard, container, false);
 
+        ref.setAndroidContext(getContext());
+
 
         leaderBoardList = (ListView) rootView.findViewById(R.id.leaderboardlistview);
 
+        getUserInfo();
 
         return rootView;
     }
@@ -87,16 +92,16 @@ public class LeaderboardActivity extends Fragment {
     }
 
     public void getFirebaseUI() {
-        Firebase ref = new Firebase("https://pointings-2264c.firebaseio.com/" + studyGroupName + "/Student");
-        FirebaseListAdapter<String> firebaseListAdapter = new FirebaseListAdapter<String>(getActivity(), String.class, R.layout.leaderboardsinglerow, ref) {
+         ref = new Firebase("https://pointings-2264c.firebaseio.com/" + studyGroupName + "/Student");
+        FirebaseListAdapter<User> firebaseListAdapter = new FirebaseListAdapter<User>(getActivity(), User.class, R.layout.leaderboardsinglerow, ref) {
 
             @Override
-            protected void populateView(View view, String string, int i) {
+            protected void populateView(View view, User user, int i) {
 
                 TextView userName = (TextView) view.findViewById(R.id.usernametextview);
                 TextView userPoints = (TextView) view.findViewById(R.id.pointstextview);
-                userName.setText("Ahmed");
-                userPoints.setText("6");
+                userName.setText(user.getUsername());
+                userPoints.setText(user.getUserPoints());
 
             }
         };

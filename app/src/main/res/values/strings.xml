@@ -7,9 +7,9 @@
     <string name="title_activity_set_first_login_name">SetFirstLoginName</string>
     <string-array name="Study_Group_Names">
 
-        <item>Study Group 1</item>
-        <item>Study Group 2</item>
-        <item>Study Group 3</item>
+        <item>StudyGroup1</item>
+        <item>StudyGroup2</item>
+        <item>StudyGroup3</item>
     </string-array>
 
     <string name="Study_Group_Prompt">Choose a study group</string>

@@ -127,9 +127,11 @@ public class AddActivity extends Fragment {
                     Log.e("Post Title", post.getActivityName());
                 }
 
-                adapter = new ArrayAdapter<NewActivity>(getActivity(),android.R.layout.simple_list_item_1,posts);
-                mSpinner.setAdapter(adapter);
+                if(getActivity() != null) {
+                    adapter = new ArrayAdapter<NewActivity>(getActivity(), android.R.layout.simple_list_item_1, posts);
+                    mSpinner.setAdapter(adapter);
 
+                }
 
 
             }
