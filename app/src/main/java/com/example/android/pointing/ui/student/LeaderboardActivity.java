@@ -101,7 +101,7 @@ public class LeaderboardActivity extends Fragment {
                 TextView userName = (TextView) view.findViewById(R.id.usernametextview);
                 TextView userPoints = (TextView) view.findViewById(R.id.pointstextview);
                 userName.setText(user.getUsername());
-                userPoints.setText(user.getUserPoints());
+                userPoints.setText(Long.toString(user.getUserPoints()));
 
             }
         };

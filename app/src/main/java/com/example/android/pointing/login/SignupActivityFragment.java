@@ -196,7 +196,7 @@ public class SignupActivityFragment extends Fragment implements View.OnClickList
         mUser.setSgl(SGL);
         mUser.setStudyGroupName(mStudyGroupName);
         mUser.setUsername(mUsernameStr);
-        mUser.setUserPoints("0");
+        mUser.setUserPoints(0);
 
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(mUser.getEmailAddress(), mUser.getPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override

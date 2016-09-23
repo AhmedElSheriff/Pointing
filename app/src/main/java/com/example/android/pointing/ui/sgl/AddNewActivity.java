@@ -2,7 +2,6 @@ package com.example.android.pointing.ui.sgl;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +39,7 @@ public class AddNewActivity extends Fragment {
     private EditText mActivityPoints;
     private Button mAddActivity;
     private String mActivityNameStr;
-    private int mActivityPointsInt;
+    private Long mActivityPointsLng;
     private NewActivity mActivity = new NewActivity();
     HashMap<String,String> hashMap;
 
@@ -65,10 +64,11 @@ public class AddNewActivity extends Fragment {
             public void onClick(View v) {
 
                 mActivityNameStr = mActivityName.getText().toString();
-                mActivityPointsInt = Integer.parseInt(mActivityPoints.getText().toString());
+                mActivityPointsLng = Long.parseLong(mActivityPoints.getText().toString());
 
                 mActivity.setActivityName(mActivityNameStr);
-                mActivity.setActivityPoints(mActivityPointsInt);
+                mActivity.setActivityPoints(mActivityPointsLng);
+                mActivity.setActivityStatus("Pending");
 
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference reference = database.getReference(hashMap.get("studyGroupName")).child("SGActivties");
@@ -96,9 +96,9 @@ public class AddNewActivity extends Fragment {
 
                 List<String> posts = new ArrayList<>(hashMap.values());
 
-                for (String post : posts) {
-                    Log.e("Post Title", post);
-                }
+//                for (String post : posts) {
+//                    Log.e("Post Title", post);
+//                }
 
 
             }

@@ -17,15 +17,15 @@ public class User {
     public String studyGroupName;
     public String sgl;
 
-    public String userPoints;
+    public long userPoints;
 
     public User(){}
 
-    public void setUserPoints(String userPoints) {
+    public void setUserPoints(long userPoints) {
         this.userPoints = userPoints;
     }
 
-    public String getUserPoints() {
+    public long getUserPoints() {
         return userPoints;
     }
 

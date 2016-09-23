@@ -28,6 +28,9 @@ public class ControllerStudent extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,9 +50,10 @@ public class ControllerStudent extends AppCompatActivity {
                 public void onClick(View v) {
                     FirebaseAuth.getInstance().signOut();
                     finish();
-                    startActivity(new Intent(ControllerStudent.this,MainActivity.class));
+                    startActivity(new Intent(ControllerStudent.this, MainActivity.class));
                 }
             });
+
         }
 
 
