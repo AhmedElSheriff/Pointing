@@ -1,5 +1,6 @@
 package com.example.android.pointing.login;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.firebase.database.Exclude;
 
 import java.util.HashMap;
@@ -8,6 +9,8 @@ import java.util.Map;
 /**
  * Created by Abshafi on 9/8/2016.
  */
+
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class User {
 
     public String emailAddress;

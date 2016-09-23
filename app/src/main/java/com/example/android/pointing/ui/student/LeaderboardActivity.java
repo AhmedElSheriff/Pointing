@@ -2,7 +2,6 @@ package com.example.android.pointing.ui.student;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,9 +73,9 @@ public class LeaderboardActivity extends Fragment {
 
                 studyGroupName = hashMap.get("studyGroupName");
 
-                for (String post : posts) {
-                    Log.e("Post Title", post);
-                }
+//                for (String post : posts) {
+//                    Log.e("Post Title", post);
+//                }
 
                 getFirebaseUI();
 
@@ -92,6 +91,9 @@ public class LeaderboardActivity extends Fragment {
     }
 
     public void getFirebaseUI() {
+
+        FirebaseDatabase data = FirebaseDatabase.getInstance();
+        data.getReference(studyGroupName).child("Student");
          ref = new Firebase("https://pointings-2264c.firebaseio.com/" + studyGroupName + "/Student");
         FirebaseListAdapter<User> firebaseListAdapter = new FirebaseListAdapter<User>(getActivity(), User.class, R.layout.leaderboardsinglerow, ref) {
 
