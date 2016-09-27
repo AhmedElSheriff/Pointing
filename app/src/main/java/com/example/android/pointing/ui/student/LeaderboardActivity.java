@@ -1,5 +1,6 @@
 package com.example.android.pointing.ui.student;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -41,6 +42,7 @@ public class LeaderboardActivity extends Fragment {
     private String points;
     ListView leaderBoardList;
     public Firebase ref;
+    protected ProgressDialog mProgressDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,7 +51,8 @@ public class LeaderboardActivity extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_leaderboard, container, false);
 
         ref.setAndroidContext(getContext());
-
+        mProgressDialog = new ProgressDialog(getContext());
+        mProgressDialog.setMessage("Please Wait!");
 
         leaderBoardList = (ListView) rootView.findViewById(R.id.leaderboardlistview);
 
@@ -60,6 +63,7 @@ public class LeaderboardActivity extends Fragment {
 
 
     public void getUserInfo() {
+        mProgressDialog.show();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userID = user.getUid();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -107,6 +111,8 @@ public class LeaderboardActivity extends Fragment {
 
             }
         };
+
+        mProgressDialog.dismiss();
 
         leaderBoardList.setAdapter(firebaseListAdapter);
     }

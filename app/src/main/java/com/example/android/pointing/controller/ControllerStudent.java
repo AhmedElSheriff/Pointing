@@ -94,7 +94,7 @@ class MyAdapter extends FragmentStatePagerAdapter{
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "Add NewActivity";
+                return "Add Activity";
             case 1:
                  return "My Activities";
             case 2:

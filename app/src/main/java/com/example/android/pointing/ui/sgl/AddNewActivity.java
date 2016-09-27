@@ -7,9 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.android.pointing.R;
 import com.example.android.pointing.db.NewActivity;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -42,6 +44,7 @@ public class AddNewActivity extends Fragment {
     private Long mActivityPointsLng;
     private NewActivity mActivity = new NewActivity();
     HashMap<String,String> hashMap;
+    public String userID;
 
 
 
@@ -70,9 +73,15 @@ public class AddNewActivity extends Fragment {
                 mActivity.setActivityPoints(mActivityPointsLng);
                 mActivity.setActivityStatus("Pending");
 
+
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference reference = database.getReference(hashMap.get("studyGroupName")).child("SGActivties");
-                reference.push().setValue(mActivity);
+                reference.push().setValue(mActivity).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(getActivity(), "New Activity has been added", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
 
 
@@ -86,7 +95,7 @@ public class AddNewActivity extends Fragment {
     public void getUserInfo()
     {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String userID = user.getUid();
+        userID = user.getUid();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         database.getReference("allUsers").child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

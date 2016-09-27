@@ -29,7 +29,6 @@
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme" />
         <activity android:name=".Controller" />
-        <activity android:name=".login.SetFirstLoginName" />
         <activity android:name=".controller.ControllerSGL" >
         </activity>
         <activity android:name=".controller.ControllerStudent"/>

@@ -20,10 +20,12 @@
         app:tabTextColor="#ffffff"
         app:tabSelectedTextColor="#ffffff"
         app:tabIndicatorColor="#fdff72"
+        app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
         />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

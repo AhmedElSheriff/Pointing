@@ -12,10 +12,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.android.pointing.R;
 import com.example.android.pointing.db.NewActivity;
 import com.firebase.client.Firebase;
+import com.firebase.client.ServerValue;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -57,6 +60,8 @@ public class AddActivity extends Fragment {
 
     protected ProgressDialog mProgressDialog;
     protected String selectedActivity;
+    protected String userName;
+    protected NewActivity mNewActivity;
 
     //NewActivity mNewActivity;
 
@@ -103,6 +108,7 @@ public class AddActivity extends Fragment {
                 userMap = (HashMap<String, String>) dataSnapshot.getValue();
 
                 studyGroupName = userMap.get("studyGroupName");
+                userName = userMap.get("username");
 
                 List<String> posts = new ArrayList<>(userMap.values());
 
@@ -183,7 +189,7 @@ public class AddActivity extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // HashMap<String, NewActivity> hashMap1 = (HashMap<String, NewActivity>) dataSnapshot.getValue();
 
-                NewActivity mNewActivity = new NewActivity();
+                 mNewActivity = new NewActivity();
                 for(DataSnapshot child : dataSnapshot.getChildren())
                 {
                      mNewActivity =  child.getValue(NewActivity.class);
@@ -192,15 +198,25 @@ public class AddActivity extends Fragment {
 
                 }
 
-
+//                HashMap<String,Object> timeStamp = new HashMap<String, Object>();
+//                timeStamp.put("timestamp", ServerValue.TIMESTAMP);
                 mNewActivity.setActivityURL(mURLStr);
+                mNewActivity.setTimestampValue(ServerValue.TIMESTAMP);
+                mNewActivity.setCreatedBy(userName);
 
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference reference = database.getReference(studyGroupName).child("SGL").child("studentActivities");
-                reference.push().setValue(mNewActivity);
+                reference.push().setValue(mNewActivity).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(getActivity(), "New Activity has been added", Toast.LENGTH_SHORT).show();
+                        pushIntomyActivities();
+                    }
+                });
 
-                DatabaseReference reference2 = database.getReference(studyGroupName).child("Student").child(userID).child("myActivities");
-                reference2.push().setValue(mNewActivity);
+
+
+
 
 
             }
@@ -214,5 +230,11 @@ public class AddActivity extends Fragment {
 
 
 
+    }
+
+    private void pushIntomyActivities()
+    {
+        DatabaseReference reference2 = database.getReference(studyGroupName).child("Student").child(userID).child("myActivities");
+        reference2.push().setValue(mNewActivity);
     }
 }
